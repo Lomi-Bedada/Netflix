@@ -8,5 +8,6 @@ const instance = axios.create({
 });
 
 // https:api.themoviedb.org/3/genre/movie/list?language=en
+// export default instance;
+// https://api.themoviedb.org/3/kGzFbGhp99zva6oZODW5atUtnqi.jpg
 export default instance;
-https://api.themoviedb.org/3/kGzFbGhp99zva6oZODW5atUtnqi.jpg 
