@@ -1,8 +1,11 @@
-import "./index.css";
+// import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { useEffect, useState } from "react";
 
 import Home from "./pages/Home";
-import reactLogo from "./assets/react.svg";
-import { useState } from "react";
+
+// import [useState,useEffect] from "react"
 
 function App() {
   // const [count, setCount] = useState(0);
