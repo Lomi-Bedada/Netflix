@@ -1,2 +1,210 @@
-create componenet header
-in componenet header fatch iocans from material icon
+*Step1 
+-create a repository in github and clone 
+-Create react application using (npm create vite@latest)
+
+*Step2
+- clean unnecessary files from the application
+- Create a div inside the APP.js and run 
+- push first commit to test the app is working
+
+
+//!The Netflix website has 4 parts
+*1. Header
+*2. Footer
+*3. Banner
+*4. Main Section or Rows
+
+*Step3
+-create additional folders inside src 
+1.Pages
+    - inside pages create Home.jsx(used to wrap all the components)
+
+2.Components
+     -header/header.jsx
+     -Footer/Footer.jsx
+*Header Section
+-create function component Header.jsx and header.css to style the header
+-the header has two parts left and right
+*header left part
+-ul with 8 li
+-download Netflix logo from the website and save in side asset folder
+*header right part
+-ul with 4 li
+-visit https://mui.com/-for material icon
+install material icon : 
+* npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
+*import the following icons
+- SearchIcon 
+-NotificationsNoneIcon 
+- AccountBoxIcon 
+-ArrowDropDownIcon 
+*visit google fonts and import the following fonts
+-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Lexend:wght@400;500;600;700;800;900&display=swap');
+-add the imported fonts directly
+**
+:root {
+  --font-base: 'Lexend', sans-serif;
+  --font-second-base: 'Lexend', sans-serif;
+  --bg-color: #111111;
+  --primary-color: #ffffff;
+  --secondary-color: #e50914;
+}
+//?In CSS, :root is a selector that represents the highest-level parent in the DOM, similar to the html element. 
+* Footer Section
+-import icons-FacebookOutlinedIcon
+             -InstagramIcon
+             -YouTubeIcon   
+*add the icons ,data and service code part in the footer component 
+-add footer.css
+
+commit and push to github the header and footer using 
+*git push -u origin main
+*to avoid the warning LF(Line feed warnning)
+ -git config --global core.autocrlf true
+ //?On Windows: Git will convert line endings from Unix-style LF (line feed) to Windows-style CRLF (carriage return + line feed) when checking out code (reading files from the repository).
+
+*Step4
+
+-All the movies and videos are from https://www.themoviedb.org/
+*TMDb is a widely used, community-built movie and TV database, and it offers a powerful API for retrieving information.
+to generate api-key visit- https://www.themoviedb.org/settings/api
+API KEY : f1c605abd19bae04d33edde98b9abcd4
+
+-to do the banner section we need to fetch data from the tmdb so we create the axios and request components.
+-then we create these two components in a folder utlis
+*-utils folder is typically used to store utility functions or helper modules that perform generic tasks and can be reused throughout the app
+so
+-to use axios first we install axios(npm i axios)
+-in the component we put the base url that is: https://www.themoviedb.org/
+And 
+we create a requests component that contains the url for the movies and tv
+then 
+*we store the following urls in a variable -used to fetch the banner and rows 
+    fetchTrending
+    fetchTopRatedMovies
+    fetchActionMovies
+    fetchComedyMovies
+    fetchHorrorMovies 
+    fetchRomanceMovies 
+    fetchDocumentaries
+    fetchTvShow
+*we create .env file and store the API_Key in .env file using 
+- VITE_API_KEY=api-key
+*included the .env in the .gitignore to prevent the API keys from being committed to version control systems like Git. 
+
+*commit and push to github
+-git push
+
+
+*Step5
+-create banner component inside components folde
+-define a state a movie and updater function setMovie
+-import axios component to get the baseURL 
+-import requests component to get the url for specific video and API-KEY
+-use async await to fetch the dynamic data from the tmdb
+-use useEffect hook to render the updated state
+-the data we fetch here is an array. so to select a single array element we use the random number generator
+//!setMovie(
+            request.data.results[
+            Math.floor(Math.random() * request.data.results.length)
+            ]
+          //!  ); 
+*Math.random()- gives us a rondom number between 0 & 1
+*Math.random() * request.data.results.length--- we multiply the random number by the length of the array
+*Math.floor---used to round the number to an integer
+//?
+function truncate(str, n) {
+            return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+        }
+-used to truncate the the description to our desired characters
+
+
+*Step6
+-we create a reusable component Rows.jsx 
+-RowList.jsx used to pass different values to Rows.jsx
+-we pass props from RowList to Rows (title,fetchUrl,isLarge)
+-then we fetch the data from tmdb
+-return the title and the image
+
+//!src={`${base_url}${
+              isLargeRow ? movie.poster_path : movie.backdrop_path
+            }`}
+            alt={movie.name}
+            className={`row__poster ${isLargeRow && "row__posterLarge"}`}
+
+    *if we get the base_url and isLargeRow is true ==>movie.poster_path is rendered otherwise movie.backdrop_path
+    *also className if isLargeRow is true it will take row__posterLarge className
+-when we click on the pic to see the trailer the function handleClick(movie) is called
+
+*explanation how the handleClick function works
+
+**to see the movie trailer when we click on the pics we need to install
+npm i movie trailer
+**if we get the movie id from youtube- we can get the youtube trailer- so to do that we need to install
+npm i react-youtube
+**import both
+import movieTrailer from 'movie-trailer';
+import YouTube from 'react-youtube';
+
+//!const handleClick = (movie) => {
+  if (trailerUrl) {
+    setTrailerUrl("");
+  } else {
+    movieTrailer(movie?.title || movie?.name || movie?.original_name).then(
+      (url) => {
+        console.log(url);
+        const urlParams = new URLSearchParams(new URL(url).search);
+        console.log(urlParams);
+        console.log(urlParams.get("v"));
+        setTrailerUrl(urlParams.get("v"));
+      }
+    );
+  }
+//!};
+*handleClick is a function that takes a movie object as an argument. Its purpose is to either display or hide the trailer of a movie on YouTube by setting a trailerUrl based on the YouTube video ID.
+
+//?Checking trailerUrl:
+
+*trailerUrl is a state variable that stores the YouTube video ID of the trailer.
+
+*If trailerUrl already has a value, it means a trailer is currently being displayed, so it clears the trailerUrl by setting it to an empty string (setTrailerUrl("")). This effectively hides the trailer.
+
+*If trailerUrl is empty, it proceeds to find and set the trailer for the movie.
+
+//?Finding the Movie Trailer:
+
+*movieTrailer() is a function from the movie-trailer library that searches YouTube for a trailer based on a movie name. The function is called with a title from the movie object:
+
+*movie?.title, movie?.name, or movie?.original_name, depending on which property exists.
+
+*The movieTrailer function returns a promise, resolving to the URL of the trailer video on YouTube if found.
+
+//?Extracting the YouTube Video ID:
+
+*url is the full URL of the YouTube video returned by movieTrailer.
+
+*new URL(url).search retrieves the query parameters from the YouTube URL.
+
+*new URLSearchParams(new URL(url).search) parses these query parameters, enabling easy access to each parameter’s value.
+
+*The YouTube video ID is stored in the v parameter of the URL (e.g., for https://www.youtube.com/watch?v=abcd1234, v is abcd1234).
+
+*urlParams.get("v") retrieves this video ID.
+
+//?Setting the Trailer URL:
+
+*Finally, setTrailerUrl(urlParams.get("v")) sets the trailerUrl state to the YouTube video ID.
+*This video ID can then be used to embed the YouTube trailer, such as through an <iframe> element, to display the video on your page.
+
+*Final Step
+//!Deployment to github
+-install npm install gh-pages --save-dev
+-Add to json "homepage": "https://<your-username>.github.io/<your-repo-name>/"
+-Add the following scripts to your package.json:
+**
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist"
+* Run the Deployment Command: Once added, you can run:
+npm run deploy
+
+

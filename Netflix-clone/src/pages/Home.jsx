@@ -6,9 +6,12 @@ import Header from "../Components/Header/Header";
 import React from "react";
 import RowList from "../Row/RowList/RowList";
 
+// import Loader from "../Components/Loader/Loader";
+
 const Home = () => {
   return (
     <>
+      {/* <Loader /> */}
       <Header />
       <Banner />
       <RowList />
