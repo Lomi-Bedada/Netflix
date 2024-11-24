@@ -1,12 +1,18 @@
 {
+  "homepage": "https://github.com/Lomi-Bedada/Netflix/",
   "name": "netflix-clone",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite dev",
+    "build": "vite build",
+    "deploy": "gh-pages -d dist",
+    "lint:fix": "eslint. --fix",
+    "lint:watch": "eslint. --watch",
+    "predeploy": "npm run build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "test": "jest"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
@@ -32,6 +38,8 @@
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
+    "gh-pages": "^6.2.0",
+    "github-pages": "^3.0.2",
     "globals": "^15.11.0",
     "vite": "^5.4.10",
     "webpack": "^5.96.1",
