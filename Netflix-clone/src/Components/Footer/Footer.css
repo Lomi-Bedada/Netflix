@@ -3,6 +3,7 @@
   display: flex;
   color: gray;
   justify-content: center;
+  padding-top: 10px;
 }
 .footer_inner_counter {
   width: 60%;
@@ -56,18 +57,7 @@
   margin-bottom: 10px;
 }
 @media screen and (max-width: 576px) {
-  .footer_inner_counter {
-    display: flex;
-    flex-direction: column !important;
-    height: auto;
+  .footer_outer_container {
     width: 100%;
-  }
-}
-@media screen and (max-width: 800px) {
-  .service_code {
-    /* display: flex; */
-    /* flex-direction: column !important; */
-    /* display: block; */
-    display: none;
   }
 }

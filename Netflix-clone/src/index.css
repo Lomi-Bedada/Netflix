@@ -18,3 +18,7 @@
 .App {
   background: #111;
 }
+
+body {
+  font-family: "Roboto", sans-serif;
+}
