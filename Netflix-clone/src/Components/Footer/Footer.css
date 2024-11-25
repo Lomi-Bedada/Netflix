@@ -60,4 +60,8 @@
   .footer_outer_container {
     width: 100%;
   }
+  .service_code {
+    width: 100%;
+    margin: 0;
+  }
 }

@@ -1,9 +1,9 @@
 .row__poster {
-  width: 100%;
+  /* width: 100%; */
   object-fit: contain;
   max-height: 100px;
   transition: transform 450ms;
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 .row__posters {
   display: flex;
@@ -25,6 +25,6 @@
 }
 .row {
   background-color: rgb(50, 68, 62);
-  margin-left: 20px;
+  /* margin-left: 20px; */
   color: rgb(10, 10, 10);
 }

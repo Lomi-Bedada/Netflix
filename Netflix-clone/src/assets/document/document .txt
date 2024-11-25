@@ -1,3 +1,18 @@
+npm create vite@latest
+
+my-app/
+├── node_modules/        # Contains all the dependencies
+├── public/              # Static assets
+├── src/                 # React components and application code
+│   ├── App.css          # Styles for the App component
+│   ├── App.jsx          # Main App component
+│   ├── main.jsx         # Entry point of the application
+├── index.html           # Main HTML file
+├── package.json         # Project metadata and dependencies
+└── vite.config.js       # Vite configuration file
+
+
+
 *Step1 
 -create a repository in github and clone 
 -Create react application using (npm create vite@latest)
