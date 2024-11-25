@@ -5,12 +5,9 @@
   "type": "module",
   "scripts": {
     "start": "vite dev",
-    "build": "vite build",
-    "deploy": "gh-pages -d dist",
-    "lint:fix": "eslint. --fix",
-    "lint:watch": "eslint. --watch",
     "predeploy": "npm run build",
-    "lint": "eslint .",
+    "deploy": "gh-pages -d dist",
+    "build": "vite build",
     "test": "jest"
   },
   "dependencies": {
