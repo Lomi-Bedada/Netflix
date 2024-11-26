@@ -1,11 +1,11 @@
 {
-  "name": "netflix-clone",
   "homepage": "https://Lomi-Bedada.github.io/Netflix",
+  "name": "netflix-clone",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite dev",
+    "start": "vite ",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "build": "vite build",
